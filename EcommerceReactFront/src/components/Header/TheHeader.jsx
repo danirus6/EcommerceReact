@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Header = () => {
+const TheHeader = () => {
     return (
         <div>Header</div>
     )
 }
 
-export default Header
+export default TheHeader
