@@ -1,0 +1,16 @@
+.footer {
+    position:fixed;
+    width: 100%;
+    bottom: 0;
+    padding: .625rem 0 .625rem 0;
+    background-color: #12212B;
+  
+    &__span {
+      display: flex;
+      justify-content: space-around;
+      font-size: smaller;
+      width: 85%;
+    }
+  }
+
+  /* Fusilado del proyecto anterior; se cambiará más tarde */
