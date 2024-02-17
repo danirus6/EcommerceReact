@@ -11,7 +11,7 @@ const initialState = {
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
     const getUser = async () => {
-        const response = await axios.get("URL");
+        const response = await axios.get("URL"); // Cambiar esto
         dispatch({
             type: "GET_USER",
             payload: response.data //YA VEREMOS COMO VA ESTO
