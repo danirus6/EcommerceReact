@@ -15,7 +15,7 @@ const TheForm = () => {
     let localData = JSON.parse(localStorage.getItem('data')) //Esto es para guardarlo en el navegador
 
     const handleInputChange = (event) => {
-        setData({...data, [event.target.name]: event.target.name})
+        setData({...data, [ event.target.name ]: event.target.name})
     }
 
     const handleSubmit = (event) => {
@@ -38,30 +38,29 @@ const TheForm = () => {
         localStorage.setItem('data', JSON.stringify(localData))
         console.log({ message: 'data succesfully stored: '}, { name: data.name,
             username: data.username, password: data.password })
-        setTimeout(()=> {navigate('/list')}, 2000)
+        setTimeout(()=> {navigate('/list')}, 2000) // El enlace a list habrá que cambiar.
         }
     }
 
     const Alert = () => {
-        if(data.name.length < 3 || data.username.length < 4 || password < 8 ) {
-            Swal.fire({
+        if(data.name.length < 3 || data.username.length < 4 || password < 8 ) { //El límite de caracteres puede variar
+            Swal.fire({  //Introducir cambios para que sea necesario usar caracteres especiales en el password
                 title: 'Error!',
                 text: 'Rellena todos los campos!',
-                confirmButtonText: 'Aceptar'
+                confirmButtonText: 'Aceptar'  
             })
         }
     }
 
     return (
-        <div>Form</div>
-    //     <form className='form' onSubmit={handleSubmit}>
-    //     <div className='form__data'>
-    //       <input className='form__data__box' placeholder='título' type='text' name='name' value={data.name} onChange={handleInputChange}/>
-    //       <textarea className='form__data__box' rows={10} placeholder='texto' name='info' value={data.info} onChange={handleInputChange}/>
-    //       <input className='form__data__box' placeholder='url' type='text' name='url' value={data.url} onChange={handleInputChange}/>
-    //     </div>
-    //     <button type='submit' onClick={Alert}>Submit</button>
-    //   </form>
+            <form className='form' onSubmit={handleSubmit}>
+                <div className='form__data'>
+                    <input className='form__data__box' placeholder='name' type='text' name='name' value={data.name} onChange={handleInputChange}/>
+                    <input className='form__data__box' placeholder='username' type= 'text' name='username' value={data.username} onChange={handleInputChange}/>
+                    <input className='form__data__box' placeholder='password' type='text' name='password' value={data.password} onChange={handleInputChange}/>
+                </div>
+            <button type='submit' onClick={Alert}>Submit</button>
+            </form>
     )
 }
 

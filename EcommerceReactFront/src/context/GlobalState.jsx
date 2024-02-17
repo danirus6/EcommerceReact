@@ -5,8 +5,10 @@ import axios from 'axios';
 
 const initialState = {
     name: "",
+    username: "",
+    password: ""
 }
-const GlobalState = ({ children }) => {
+export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
     const getUser = async () => {
         const response = await axios.get("URL");
@@ -15,6 +17,7 @@ const GlobalState = ({ children }) => {
             payload: response.data //YA VEREMOS COMO VA ESTO
         })
     }
+
     return (
         <GlobalContext.Provider
             value={{
@@ -25,4 +28,5 @@ const GlobalState = ({ children }) => {
         </GlobalContext.Provider>
     )
 }
+
 export const GlobalContext = createContext(initialState);

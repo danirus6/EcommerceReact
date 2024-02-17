@@ -5,9 +5,9 @@ import './TheHeader.styles.css'
 const TheHeader = () => {
     return (
         <nav className = 'header'>
-            <div>Header
-                <span><Link className= 'header__link' to =''>Home</Link></span>
-                <span><Link className= 'header__link' to = ''>Register</Link></span> 
+            <div>
+                <span><Link className= 'header__link' to ='/'>Home</Link></span>
+                <span><Link className= 'header__link' to = '/form'>Register</Link></span> 
                 <span><Link className= 'header__link' to = ''>Login</Link></span>
                 <span><Link className= 'header__link' to = ''>Profile</Link></span>
             </div>
@@ -17,4 +17,4 @@ const TheHeader = () => {
 
 export default TheHeader
 
-// En la línea 10, la de register, creo que habria que poner un enlace a Form 
+// En la línea 10, la de register, ¿el enlace es a Form?
