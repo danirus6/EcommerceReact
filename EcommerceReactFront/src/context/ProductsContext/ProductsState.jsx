@@ -10,14 +10,22 @@ export const ProductsProvider = ({ children }) => {
     dispatch({
         type: "GET_PRODUCTS",
         payload: res.data,
-    });
+    },
+    );
+    const addCart = (product) => {
+        dispatch({
+          type: "ADD_CART",
+          payload: product,
+        });
+      };    
     return (
 
     <ProductsContext.Provider
         value={{
     
             products: state.products,
-            getProducts
+            getProducts,
+            addCart
         }}
     
     >{children}
