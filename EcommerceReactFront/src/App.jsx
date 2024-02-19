@@ -15,7 +15,7 @@ function App() {
         <BrowserRouter>
           <Home /> 
           <TheHeader /> 
-          <UserProfile />
+          {/* <UserProfile /> */}
           <TheForm />
           <TheFooter />
         </BrowserRouter>

@@ -11,7 +11,7 @@ const product = products.map((product) => {
     return (
         <div key={product._id}>
         <span>{product.name} </span>
-        <span>{product.price.toFixed(2)}</span>
+        <span>{product.price.toFixed(2)}€</span>
         </div>
 );
 });
