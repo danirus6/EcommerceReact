@@ -1,5 +1,5 @@
 import React from 'react'
-import './TheFooter.styles.css'
+import './TheFooter.styles.scss'
 
 const TheFooter = () => {
     return (

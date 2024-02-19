@@ -1,16 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './TheHeader.styles.css'
+import './TheHeader.styles.scss'
 
 const TheHeader = () => {
     return (
-        <nav className = 'header'>
-            <div>
-                <span><Link className= 'header__link' to ='/'>Home</Link></span>
-                <span><Link className= 'header__link' to = '/form'>Register</Link></span> 
-                <span><Link className= 'header__link' to = ''>Login</Link></span>
-                <span><Link className= 'header__link' to = ''>Profile</Link></span>
-            </div>
+        <nav className='header'>
+                <Link className='header__link' to ='/'>Home</Link>
+                <Link className='header__link' to = '/form'>Register</Link>
+                <Link className='header__link' to = ''>Login</Link>
+                <Link className='header__link' to = ''>Profile</Link>
         </nav>
     )
 }
