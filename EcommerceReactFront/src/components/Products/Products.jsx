@@ -13,6 +13,7 @@ const product = products.map((product) => {
         <span>{product.name} </span>
         <span>{product.price.toFixed(2)}</span>
         <button onClick={() => addCart(product)}>Add Cart</button>
+        <span>{product.price.toFixed(2)}€</span>
         </div>
 );
 });
