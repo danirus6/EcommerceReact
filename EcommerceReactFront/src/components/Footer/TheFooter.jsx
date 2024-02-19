@@ -3,7 +3,7 @@ import './TheFooter.styles.css'
 
 const TheFooter = () => {
     return (
-        <div className='footer'>Footer
+        <div className='footer'>
             <div className='footer__span'>
                 <span>Contacto</span>
                 <span>Ley de protección de datos</span>
