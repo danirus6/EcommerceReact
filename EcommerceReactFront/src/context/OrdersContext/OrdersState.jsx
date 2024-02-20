@@ -8,7 +8,7 @@ export const OrdersProvider = ({ children }) => {
         const token = JSON.parse(localStorage.getItem('token'))
         try {
             await axios.post (
-                API_URL + '/orders', // revisar el eenlace a orders
+                API_URL + '/orders', // revisar el enlace a orders
                 { productIds: order }, 
                 {headers: { authorization: token}}
                 )
