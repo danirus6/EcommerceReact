@@ -8,6 +8,7 @@ const TheForm = () => {
     const [data, setData] = useState({
         name: '',
         username: '',
+        email: '',
         password: ''
     })
 
@@ -25,25 +26,27 @@ const TheForm = () => {
                 localData.push({
                     name: data.name,
                     username: data.username,
+                    email: data.email,
                     password: data.password
                 })
             } else {
                 localData = [{
                     name: data.name,
                     username: data.username,
+                    email: data.email,
                     password: data.password
                 }]
             }
 
         localStorage.setItem('data', JSON.stringify(localData))
         console.log({ message: 'data succesfully stored: '}, { name: data.name,
-            username: data.username, password: data.password })
+            username: data.username, email: data.email, password: data.password })
         setTimeout(()=> {navigate('/list')}, 2000) // El enlace a list habrá que cambiar.
         }
     }
 
     const Alert = () => {
-        if(data.name.length < 3 || data.username.length < 4 || password < 8 ) { //El límite de caracteres puede variar
+        if(data.name.length < 3 || data.username.length < 4 || data.password.length < 8 || data.email.length <6) { //El límite de caracteres puede variar
             Swal.fire({  //Introducir cambios para que sea necesario usar caracteres especiales en el password
                 title: 'Error!',
                 text: 'Rellena todos los campos!',
@@ -57,6 +60,7 @@ const TheForm = () => {
                 <div className='form__data'>
                     <input className='form__data__box' placeholder='name' type='text' name='name' value={data.name} onChange={handleInputChange}/>
                     <input className='form__data__box' placeholder='username' type= 'text' name='username' value={data.username} onChange={handleInputChange}/>
+                    <input className='form__data__box' placeholder='email' type= 'email' name='email' value={data.email} onChange={handleInputChange}/>
                     <input className='form__data__box' placeholder='password' type='text' name='password' value={data.password} onChange={handleInputChange}/>
                 </div>
             <button type='submit' onClick={Alert}>Submit</button>
