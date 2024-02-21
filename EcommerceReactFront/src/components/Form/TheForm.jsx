@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 const TheForm = () => {
     const [data, setData] = useState({
         name: '',
-        username: '',
         email: '',
         password: ''
     });
@@ -22,7 +21,7 @@ const TheForm = () => {
         event.preventDefault();
 
         // Validaciones
-        if (data.name.length < 3 || data.username.length < 4 || data.password.length < 8 || data.email.length < 6) {
+        if (data.name.length < 3 || data.password.length < 8 || data.email.length < 6) {
             Swal.fire({
                 title: 'Error!',
                 text: 'Rellena todos los campos correctamente!',
@@ -38,16 +37,15 @@ const TheForm = () => {
 
         // Éxito
         console.log('Datos guardados:', data); 
-        navigate('/list', { replace: true }); // Usar replace para una correcta redirección
+        navigate('/login', { replace: true }); // Usar replace para una correcta redirección
     }
 
     return (
         <form className='form' onSubmit={handleSubmit}>
             <div className='form__data'>
                 <input className='form__data__box' placeholder='name' type='text' name='name' value={data.name} onChange={handleInputChange}/>
-                <input className='form__data__box' placeholder='username' type= 'text' name='username' value={data.username} onChange={handleInputChange}/>
                 <input className='form__data__box' placeholder='email' type= 'email' name='email' value={data.email} onChange={handleInputChange}/>
-                <input className='form__data__box' placeholder='password' type='text' name='password' value={data.password} onChange={handleInputChange}/>
+                <input className='form__data__box' placeholder='password' type='password' name='password' value={data.password} onChange={handleInputChange}/>
             </div>
             <button type='submit'>Submit</button>
         </form>

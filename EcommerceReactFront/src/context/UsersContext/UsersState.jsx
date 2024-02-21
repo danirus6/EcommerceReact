@@ -8,7 +8,7 @@ const initialState = {
     user: null
 }
 
-const API_URL = 'http://localhost:5173/'
+const API_URL = 'http://localhost:3000/'
 
 export const UsersProvider = ({ children }) => {
     const [state, dispatch] = useReducer (UserReducer, initialState)
@@ -23,6 +23,7 @@ export const UsersProvider = ({ children }) => {
 
         if(res.data) {
             localStorage.setItem('token', JSON.stringify(res.data.token))
+            console.log(res.data.token)
         }
     }
 
