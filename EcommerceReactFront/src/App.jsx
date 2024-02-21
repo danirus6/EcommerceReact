@@ -20,24 +20,24 @@ function App() {
   return (
     <>
       {/* <GlobalProvider> */}
-      <UsersProvider>
-        <ProductsProvider>
-          <OrdersProvider>
+      <UsersProvider> 
+      <ProductsProvider>
+        <OrdersProvider>
             <Router>
-              <TheHeader>
+                <TheHeader />
                 <Routes>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/register" element={<TheForm />} />
-                  <Route path="/profile" element={<UserProfile />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/cart" element={<Cart />} />
-              {/* FALTA FOOTER PREGUNTAR DONDE VA */}
+                    <Route path="/" element={<Home />} /> 
+                    <Route path="/login" element={<Login />} /> 
+                    <Route path="/register" element={<TheForm />} />
+                    <Route path="/profile" element={<UserProfile />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/cart" element={<Cart />} />
                 </Routes>
-              </TheHeader>
+                <TheFooter />
             </Router>
-          </OrdersProvider>
-        </ProductsProvider>
-      </UsersProvider>
+        </OrdersProvider>
+    </ProductsProvider>
+</UsersProvider> 
       {/* </GlobalProvider> */}
     </>
   )

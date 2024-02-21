@@ -1,12 +1,13 @@
 import React from 'react'
 import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { UsersContext} from '../../context/UsersContext/UsersState'
 import { Form, Input, Button } from 'antd'
 
 const Login = () => {
     const navigate = useNavigate()
     const { login } = useContext(UsersContext)
+    
 
     useEffect(() => {
         setTimeout(() => {
@@ -15,6 +16,7 @@ const Login = () => {
                 navigate('/profile')
             }
         }, 2000)
+        
     }, [login])
 
     const onFinish = (values) => {
@@ -56,6 +58,11 @@ const Login = () => {
                     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType='submit'>
                             Submit
+                        </Button>
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Button type="primary" htmlType='button'>
+                        <Link to='/register'>Register</Link>
                         </Button>
                     </Form.Item>
                 </Form>

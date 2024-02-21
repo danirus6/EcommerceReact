@@ -47,7 +47,7 @@ const TheHeader = () => {
                 ) : (
                     <span className='menu-item'>
                         <LoginOutlined />
-                        <Link to='/'>Login</Link>
+                        <Link to='/login'>Login</Link>
                     </span>
                 )}
             </div>
@@ -56,17 +56,3 @@ const TheHeader = () => {
 }
 
 export default TheHeader
-
-// En la línea 10, la de register, ¿el enlace es a Form?
-
-   // return (
-    //     <nav className='header'>
-    //         <div>
-    //             {token ? ()}
-    //             <Link className='header__link' to ='/'>Home</Link>
-    //             <Link className='header__link' to = '/form'>Register</Link>
-    //             <Link className='header__link' to = ''>Login</Link>
-    //             <Link className='header__link' to = ''>Profile</Link>
-    //         </div>
-    //     </nav>
-    // )
