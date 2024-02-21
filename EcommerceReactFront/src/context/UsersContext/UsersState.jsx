@@ -5,6 +5,7 @@ import users from "./UserReducer"
 
 const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
+    users: [],
     token: token || null,
     user: null
 }
@@ -45,7 +46,7 @@ export const UsersProvider = ({ children }) => {
     const logout = async () => {
         const token = JSON.parse(localStorage.getItem('token'))
 
-        const res = await axios.delete(API_URL + '/users/logout', { //Habría que mirar el users/logout
+        const res = await axios.delete(API_URL + '/users/logout', { 
             headers: { authorization: token }
         })
         dispatch({
@@ -57,24 +58,28 @@ export const UsersProvider = ({ children }) => {
         }
         return res
     }
-    const register = async (user) => {
-        const res = await axios.post(API_URL + '/users/register', user)
+    const createUser = async (user) => {
+    try{
+        const res = await axios.post(API_URL + 'users/register', user)
         dispatch({
             type: 'REGISTER',
-            payload: res.data
-        })
-        return res
+            payload: res.data.user
+        });
+        
+    }catch(err) {
+        console.log(err)
     }
-
+}
     return(
         <UsersContext.Provider
             value={{
                 token:state.token,
                 user: state.user,
+                users: [],
                 login,
                 getUserInfo,
                 logout,
-                register
+                createUser
             }}
         > { children }</UsersContext.Provider>
     )
