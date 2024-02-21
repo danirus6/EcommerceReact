@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TheForm.styles.scss';
 import Swal from 'sweetalert2';
+import { UsersContext } from '../../context/UsersContext/UsersState';
 
 const TheForm = () => {
     const [data, setData] = useState({
@@ -10,7 +11,7 @@ const TheForm = () => {
         email: '',
         password: ''
     });
-
+    const { createUser } = useContext(UsersContext);
     let navigate = useNavigate();
 
     const handleInputChange = (event) => {
@@ -37,6 +38,7 @@ const TheForm = () => {
 
         // Éxito
         console.log('Datos guardados:', data); 
+        createUser()
         navigate('/login', { replace: true }); // Usar replace para una correcta redirección
     }
 

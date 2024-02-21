@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react"
 import axios from 'axios'
 import UserReducer from './UserReducer'
+import users from "./UserReducer"
 
 const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
@@ -54,6 +55,15 @@ export const UsersProvider = ({ children }) => {
         if(res.data) {
             localStorage.removeItem('token')
         }
+        return res
+    }
+    const register = async (user) => {
+        const res = await axios.post(API_URL + '/users/register', user)
+        dispatch({
+            type: 'REGISTER',
+            payload: res.data
+        })
+        return res
     }
 
     return(
@@ -63,7 +73,8 @@ export const UsersProvider = ({ children }) => {
                 user: state.user,
                 login,
                 getUserInfo,
-                logout
+                logout,
+                register
             }}
         > { children }</UsersContext.Provider>
     )
