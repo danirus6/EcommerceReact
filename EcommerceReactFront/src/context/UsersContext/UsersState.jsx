@@ -10,7 +10,7 @@ const initialState = {
 
 const API_URL = 'http://localhost:5173/'
 
-export const UserProvider = ({ children }) => {
+export const UsersProvider = ({ children }) => {
     const [state, dispatch] = useReducer (UserReducer, initialState)
 
     const login = async (user) => {

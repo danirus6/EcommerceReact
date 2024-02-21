@@ -6,9 +6,9 @@ import Home from './components/Home/Home'
 import Products from './components/Products/Products'
 import Cart from './components/Cart/Cart';
 import Login from './components/Login/Login'
-import Profile from './components/Profile/Profile'
-import UserProfile  from './components/UserProfile/UserProfile'
+import UserProfile from './components/UserProfile/UserProfile'
 import { ProductsProvider } from './context/ProductsContext/ProductsState'
+import { UsersProvider} from './context/UsersContext/UsersState'
 import { OrdersProvider } from './context/OrdersContext/OrdersState'
 import './App.css'
 
@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       {/* <GlobalProvider> */}
-      <UserProvider>
+      <UsersProvider>
         <ProductsProvider>
           <OrdersProvider>
             <Router>
@@ -37,7 +37,7 @@ function App() {
             </Router>
           </OrdersProvider>
         </ProductsProvider>
-      </UserProvider>
+      </UsersProvider>
       {/* </GlobalProvider> */}
     </>
   )

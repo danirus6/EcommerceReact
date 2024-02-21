@@ -1,12 +1,12 @@
 import React from 'react'
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserContext} from '../../context/UsersContext/UsersState'
+import { UsersContext} from '../../context/UsersContext/UsersState'
 import { Form, Input, Button } from 'antd'
 
 const Login = () => {
     const navigate = useNavigate()
-    const { login } = useContext(UserContext)
+    const { login } = useContext(UsersContext)
 
     useEffect(() => {
         setTimeout(() => {
