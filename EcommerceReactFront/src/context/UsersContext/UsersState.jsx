@@ -6,13 +6,30 @@ import users from "./UserReducer"
 const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
     token: token || null,
-    user: null
+    users: null
 }
 
 const API_URL = 'http://localhost:3000/'
 
 export const UsersProvider = ({ children }) => {
     const [state, dispatch] = useReducer (UserReducer, initialState)
+
+    const createUser = async(values) => {
+        const API_URL = 'http://localhost:3000/'
+        try {
+            const res = await axios.post(`${API_URL}/users/create`, values)
+            console.log('User created succesfully', res)
+            dispatch({
+                type: "CREATE_USER",
+                payload: res.data.users, status: res.status
+            })
+        } catch (error) {
+            dispatch({
+                type: "CREATE_USER",
+                payload: error.response.data.err.message
+            })
+        }
+    } 
 
     const login = async (user) => {
         const res = await axios.post(API_URL + '/users/login', user) //Habría que mirar el users/login
@@ -66,13 +83,19 @@ export const UsersProvider = ({ children }) => {
         return res
     }
 
+    // const resetUserState = () => {
+    //     dispatch({ type: "RESET_USERSTATE"})
+    // }
+
     return(
         <UsersContext.Provider
             value={{
                 token:state.token,
-                user: state.user,
+                users: state.user,
+                createUser,
                 login,
                 getUserInfo,
+                // resetUserState,
                 logout,
                 register
             }}

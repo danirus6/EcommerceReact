@@ -21,26 +21,52 @@ function App() {
     <>
       {/* <GlobalProvider> */}
       <UsersProvider> 
-      <ProductsProvider>
-        <OrdersProvider>
-            <Router>
-                <TheHeader />
-                <Routes>
-                    <Route path="/" element={<Home />} /> 
-                    <Route path="/login" element={<Login />} /> 
-                    <Route path="/register" element={<TheForm />} />
-                    <Route path="/profile" element={<UserProfile />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/cart" element={<Cart />} />
-                </Routes>
-                <TheFooter />
-            </Router>
-        </OrdersProvider>
-    </ProductsProvider>
-</UsersProvider> 
+        <ProductsProvider>
+          <OrdersProvider>
+              <Router>
+                  <TheHeader />
+                  <Routes>
+                      <Route path="/" element={<Home />} /> 
+                      <Route path="/login" element={<Login />} /> 
+                      <Route path="/register" element={<TheForm />} />
+                      <Route path="/profile" element={<UserProfile />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/cart" element={<Cart />} />
+                  </Routes>
+                  <TheFooter />
+              </Router>
+          </OrdersProvider>
+        </ProductsProvider>
+    </UsersProvider> 
       {/* </GlobalProvider> */}
     </>
   )
 }
 
 export default App
+
+
+// function App() {
+//   return (
+//     <UserProvider>
+//       <ProductProvider>
+//         <BrowserRouter>
+//           <div className='main-container'>
+//             <Header />
+//             <div className='main-container__options'>
+//               <Routes>
+//                 <Route path='/' element={<Home/>}/>
+//                 <Route path='/products' element={<Products />}/>
+//                 <Route path='/register' element={<Register />}/>
+//                 <Route path='/login' element={<Login />}/>
+//               </Routes>
+//             </div>
+//           </div>
+//           <Footer />
+//         </BrowserRouter>
+//       </ProductProvider>
+//     </UserProvider>
+//   )
+// }
+
+// export default App
