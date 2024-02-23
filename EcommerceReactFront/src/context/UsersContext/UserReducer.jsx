@@ -21,7 +21,7 @@ const users = (state, action) => {
         case 'REGISTER':
             return{
                 ...state,
-                user: state.users.action.payload
+                users: [...state.users, action.payload]
             }
         
         default: 

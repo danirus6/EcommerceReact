@@ -5,6 +5,7 @@ import users from "./UserReducer"
 
 const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
+    users: [],
     token: token || null,
     users: null
 }
@@ -14,22 +15,22 @@ const API_URL = 'http://localhost:3000/'
 export const UsersProvider = ({ children }) => {
     const [state, dispatch] = useReducer (UserReducer, initialState)
 
-    const createUser = async(values) => {
-        const API_URL = 'http://localhost:3000/'
-        try {
-            const res = await axios.post(`${API_URL}/users/create`, values)
-            console.log('User created succesfully', res)
-            dispatch({
-                type: "CREATE_USER",
-                payload: res.data.users, status: res.status
-            })
-        } catch (error) {
-            dispatch({
-                type: "CREATE_USER",
-                payload: error.response.data.err.message
-            })
-        }
-    } 
+    // const createUser = async(values) => {
+    //     const API_URL = 'http://localhost:3000/'
+    //     try {
+    //         const res = await axios.post(`${API_URL}/users/create`, values)
+    //         console.log('User created succesfully', res)
+    //         dispatch({
+    //             type: "CREATE_USER",
+    //             payload: res.data.users, status: res.status
+    //         })
+    //     } catch (error) {
+    //         dispatch({
+    //             type: "CREATE_USER",
+    //             payload: error.response.data.err.message
+    //         })
+    //     }
+    // } 
 
     const login = async (user) => {
         const res = await axios.post(API_URL + '/users/login', user) //Habría que mirar el users/login
@@ -62,7 +63,7 @@ export const UsersProvider = ({ children }) => {
     const logout = async () => {
         const token = JSON.parse(localStorage.getItem('token'))
 
-        const res = await axios.delete(API_URL + '/users/logout', { //Habría que mirar el users/logout
+        const res = await axios.delete(API_URL + '/users/logout', { 
             headers: { authorization: token }
         })
         dispatch({
@@ -74,33 +75,31 @@ export const UsersProvider = ({ children }) => {
         }
         return res
     }
-    const register = async (user) => {
-        const res = await axios.post(API_URL + '/users/register', user)
+    const createUser = async (user) => {
+    try{
+        const res = await axios.post(API_URL + 'users/register', user)
         dispatch({
             type: 'REGISTER',
-            payload: res.data
-        })
-        return res
+            payload: res.data.user
+        });
+        
+    }catch(err) {
+        console.log(err)
     }
-
-    // const resetUserState = () => {
-    //     dispatch({ type: "RESET_USERSTATE"})
-    // }
 
     return(
         <UsersContext.Provider
             value={{
                 token:state.token,
-                users: state.user,
-                createUser,
+                user: state.user,
                 login,
                 getUserInfo,
                 // resetUserState,
                 logout,
-                register
+                createUser
             }}
         > { children }</UsersContext.Provider>
     )
 }
-
+}
 export const UsersContext = createContext(initialState)
