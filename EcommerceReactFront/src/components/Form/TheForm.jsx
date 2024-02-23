@@ -1,20 +1,28 @@
-import React, { useContext } from 'react'; // useState ya no es necesario
+import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TheForm.styles.scss';
 import Swal from 'sweetalert2';
 import { UsersContext } from '../../context/UsersContext/UsersState';
 
 const TheForm = () => {
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
     const { createUser } = useContext(UsersContext);
     let navigate = useNavigate();
+
+    const handleInputChange = (event) => {
+        setData({ ...data, [event.target.name]: event.target.value });
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // Validaciones
-        if (event.target.name.value.length < 3 || 
-            event.target.password.value.length < 8 || 
-            event.target.email.value.length < 6) {
+        if (data.name.length < 3 || data.password.length < 8 || data.email.length < 6) {
             Swal.fire({
                 title: 'Error!',
                 text: 'Rellena todos los campos correctamente!',
@@ -23,34 +31,23 @@ const TheForm = () => {
             return; // Detener el envío si las validaciones fallan
         }
 
-        // Extraer solo los datos necesarios del formulario
-        const formData = {
-            name: event.target.name.value,
-            email: event.target.email.value,
-            password: event.target.password.value
-        };
+        // Lógica con localStorage (simplificada)
+        let localData = JSON.parse(localStorage.getItem('data')) || [];
+        localData.push(data); 
+        localStorage.setItem('data', JSON.stringify(localData));
 
-        // Enviar los datos a createUser y manejar errores
-        createUser(formData) 
-            .then(() => {
-                navigate('/login', { replace: true }); // Redirigir si exitoso
-            })
-            .catch(error => {
-                console.error('Error creando usuario:', error);
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Hubo un problema al crear el usuario. Intenta nuevamente.',
-                    confirmButtonText: 'Aceptar'
-                });
-            });
+        // Éxito
+        console.log('Datos guardados:', data); 
+        createUser()
+        navigate('/login', { replace: true }); // Usar replace para una correcta redirección
     }
 
     return (
         <form className='form' onSubmit={handleSubmit}>
             <div className='form__data'>
-                <input className='form__data__box' placeholder='name' type='text' name='name' />
-                <input className='form__data__box' placeholder='email' type='email' name='email' />
-                <input className='form__data__box' placeholder='password' type='password' name='password' />
+                <input className='form__data__box' placeholder='name' type='text' name='name' value={data.name} onChange={handleInputChange}/>
+                <input className='form__data__box' placeholder='email' type= 'email' name='email' value={data.email} onChange={handleInputChange}/>
+                <input className='form__data__box' placeholder='password' type='password' name='password' value={data.password} onChange={handleInputChange}/>
             </div>
             <button type='submit'>Submit</button>
         </form>
